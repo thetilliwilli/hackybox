@@ -1,4 +1,5 @@
 import json
+import os
 from protocol_handler import ProtocolHandler
 
 def create_html(lines):
@@ -26,6 +27,7 @@ def create_html(lines):
     """
      
 def write_files(protocol_handlers : 'list[ProtocolHandler]'):
+    os.mkdir('public')
     filename = 'public/handlers'
     json_file = open(filename + '.json', 'w')
     json_content = json.dumps(list(map(lambda x: x.__dict__, protocol_handlers)))

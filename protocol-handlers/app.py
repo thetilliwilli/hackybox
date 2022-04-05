@@ -61,5 +61,5 @@ def try_get_soc_value(hkey, key_name):
 
 
 socs = get_all_custom_protocol_handlers()
-# html_creator.write_files(socs)
-gui.render_gui(socs)
+html_creator.write_files(socs)
+# gui.render_gui(socs)
