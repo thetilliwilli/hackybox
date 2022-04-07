@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemfindComponent implements OnInit {
   public title = "Memfind tool";
-  
   public args: string = "";
 
   constructor() { }

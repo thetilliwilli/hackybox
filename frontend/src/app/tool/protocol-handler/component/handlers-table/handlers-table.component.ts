@@ -8,8 +8,8 @@ import { HandlersProviderService } from '../../service/handlers.service';
   templateUrl: './handlers-table.component.html',
 })
 export class HandlersTableComponent implements OnInit, OnDestroy {
-  private _filterValue: string = "";
   private _subscription?: Subscription;
+  private _filterValue: string = "";
   public get filterValue(): string {
     return this._filterValue;
   }
