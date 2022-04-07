@@ -1,1 +1,18 @@
-Hackybox tools
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+            <div class="card">
+                <div class="card-header">HackyTools</div>
+                <div class="card-body">
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/memfind']">memfind</a>
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/protocol-handlers']">protocol-handlers</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="col-11">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

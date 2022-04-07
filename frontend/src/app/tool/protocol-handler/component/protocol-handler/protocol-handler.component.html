@@ -1,0 +1,10 @@
+<th scope="row">{{index}}</th>
+<!-- <td>{{handler.protocol}}</td> -->
+<!-- <td>{{handler.key | trimShellOpenCommand}}</td> -->
+<td>{{handler.command}}</td>
+<td><span class="text-danger">{{handler.protocol}}</span><span>:</span><span>{{url}}</span></td>
+<td>
+    <div class="btn-group">
+        <a [href]="href" class="btn btn-sm btn-outline-primary">run</a>
+    </div>
+</td>

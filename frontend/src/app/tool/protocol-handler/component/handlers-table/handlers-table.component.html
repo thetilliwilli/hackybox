@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="col-12">
+        <div class="input-group">
+            <button class="btn btn-outline-secondary" tabindex="-1">filter</button>
+            <input class="form-control" type="text" [(ngModel)]="filterValue" placeholder="filter" tabindex="1">
+        </div>
+        <div class="input-group">
+            <button type="button" class="btn btn-outline-secondary" tabindex="-1" (click)="resetUrl()">url</button>
+            <input class="form-control" type="text" [(ngModel)]="url" placeholder="url addon" tabindex="2">
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <!-- <th scope="col">protocol</th> -->
+                        <!-- <th scope="col">key</th> -->
+                        <th scope="col">command</th>
+                        <th scope="col">url</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr protocol-handler *ngFor="let h of filteredHandlers;let i = index" [url]="url" [index]="i"
+                        [handler]="h"></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
