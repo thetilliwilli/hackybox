@@ -5,6 +5,7 @@
 <td><span class="text-danger">{{handler.protocol}}</span><span>:</span><span>{{url}}</span></td>
 <td>
     <div class="btn-group">
+        <a [routerLink]="['/protocol-handlers', handler.protocol]" class="btn btn-sm btn-outline-primary">edit</a>
         <a [href]="href" class="btn btn-sm btn-outline-primary">run</a>
     </div>
 </td>

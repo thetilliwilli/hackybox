@@ -9,6 +9,7 @@ import { ProtocolHandlerToolModule } from './tool/protocol-handler/protocol-hand
 import { MemfindComponent } from './tool/memfind/memfind.component';
 import { ProtocolHandlerToolComponent } from './tool/protocol-handler/component/protocol-handler-tool/protocol-handler-tool.component';
 import { FormsModule } from '@angular/forms';
+import { ProtocolHandlerDetailsComponent } from './tool/protocol-handler/component/protocol-handler-details/protocol-handler-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule.forRoot([
       { path: "memfind", component: MemfindComponent },
       { path: "protocol-handlers", component: ProtocolHandlerToolComponent },
+      { path: "protocol-handlers/:id", component: ProtocolHandlerDetailsComponent },
     ]),
   ],
   bootstrap: [AppComponent]
