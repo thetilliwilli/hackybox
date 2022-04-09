@@ -1,4 +1,7 @@
 <ul class="pagination">
+    <li class="page-item">
+        <button class="page-link" (click)="changePageIndex(0)">first</button>
+    </li>
     <li class="page-item" [ngClass]="{'disabled':pageIndex==0}">
         <button class="page-link" (click)="changePageIndex(pageIndex-1)">&lt;&lt;</button>
     </li>
@@ -23,5 +26,8 @@
     </li>
     <li class="page-item" [ngClass]="{'disabled':currentPage==pageCount}">
         <button class="page-link" (click)="changePageIndex(pageIndex+1)">&gt;&gt;</button>
+    </li>
+    <li class="page-item">
+        <button class="page-link" (click)="changePageIndex(pageCount-1)">last</button>
     </li>
 </ul>

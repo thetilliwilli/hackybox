@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProtocolHandler } from '../../domain/protocol-handler';
+import { HandlerService } from '../../service/handlers.service';
 
 @Component({
   selector: 'app-protocol-handler-details',
@@ -7,13 +9,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProtocolHandlerDetailsComponent implements OnInit {
   public title = "";
+  public handler: ProtocolHandler | undefined;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _handlerService: HandlerService,
   ) { }
 
   ngOnInit(): void {
-    this.title = "Details of " + this._activatedRoute.snapshot.paramMap.get("id");
+    const handlerProtocol = this._activatedRoute.snapshot.paramMap.get("id");
+
+    this._handlerService.getHandlers().subscribe({
+      next: handlers => {
+        this.handler = handlers.find(x => x.protocol === handlerProtocol);
+      },
+    });
+
+    this.title = handlerProtocol + "";
   }
 
 }

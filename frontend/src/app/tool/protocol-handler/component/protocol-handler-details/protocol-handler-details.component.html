@@ -1,6 +1,11 @@
 <div class="card">
     <h2 class="card-header">{{title}}</h2>
     <div class="card-body">
-        details here
+        <div class="row mb-3" *ngFor="let prop of handler | keyvalue">
+            <label class="col-1 col-form-label">{{prop.key}}</label>
+            <div class="col-11">
+                <input class="form-control" value="{{prop.value}}" readonly>
+            </div>
+        </div>
     </div>
 </div>

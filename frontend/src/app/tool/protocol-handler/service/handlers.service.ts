@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 @Injectable({
     providedIn: "root"
 })
-export class HandlersProviderService {
+export class HandlerService {
     constructor(
         private _httpClient: HttpClient
     ) { }

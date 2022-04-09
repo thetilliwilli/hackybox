@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProtocolHandler } from '../../domain/protocol-handler';
-import { HandlersProviderService } from '../../service/handlers.service';
+import { HandlerService } from '../../service/handlers.service';
 
 @Component({
   selector: 'handlers-table',
@@ -61,7 +61,7 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   public pageHandlers: ProtocolHandler[] = [];
 
   constructor(
-    private _handlersProviderService: HandlersProviderService,
+    private _handlersProviderService: HandlerService,
   ) { }
 
   ngOnInit(): void {
