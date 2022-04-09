@@ -6,9 +6,9 @@ import { ProtocolHandlerDetailsComponent } from './tool/protocol-handler/compone
 import { ProtocolHandlerToolComponent } from './tool/protocol-handler/component/protocol-handler-tool/protocol-handler-tool.component';
 
 const routes: Routes = [
-  { path: "memfind", canActivate: [RestrictedToolGuardGuard], component: MemfindComponent },
-  { path: "protocol-handlers", component: ProtocolHandlerToolComponent },
-  { path: "protocol-handlers/:id", component: ProtocolHandlerDetailsComponent },
+  { path: "tool/memfind", canActivate: [RestrictedToolGuardGuard], component: MemfindComponent },
+  { path: "tool/protocol-handlers", component: ProtocolHandlerToolComponent },
+  { path: "tool/protocol-handlers/:id", component: ProtocolHandlerDetailsComponent },
 ];
 
 @NgModule({
