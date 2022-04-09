@@ -1,6 +1,17 @@
-<div class="input-group">
-    <button class="btn btn-outline-secondary" tabindex="-1">
-        pager
-    </button>
-    <input class="form-control" type="text">
-</div>
+<ul class="pagination">
+    <li class="page-item" [ngClass]="{'disabled':pageIndex==0}">
+        <button class="page-link" (click)="changePageIndex(pageIndex-1)">&lt;&lt;</button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled':pageIndex==0}">
+        <button class="page-link" (click)="changePageIndex(pageIndex-1)">{{(pageIndex - 1 < 0 ? " ": pageIndex - 1).toString().padStart(2, "&nbsp;")}}</button>
+    </li>
+    <li class="page-item active">
+        <button class="page-link" (click)="changePageIndex(pageIndex)">{{(pageIndex).toString().padStart(2, "&nbsp;")}}</button>
+    </li>
+    <li class="page-item">
+        <button class="page-link" (click)="changePageIndex(pageIndex+1)">{{(pageIndex + 1).toString().padStart(2, "&nbsp;")}}</button>
+    </li>
+    <li class="page-item">
+        <button class="page-link" (click)="changePageIndex(pageIndex+1)">&gt;&gt;</button>
+    </li>
+</ul>

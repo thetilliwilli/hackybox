@@ -31,18 +31,33 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
     this.url = "//" + this.url;
   }
 
-  private _rangeQuery: string = "[0:10]*0+0";
-  public get rangeQuery(): string {
-    return this._rangeQuery;
+  private _count: number = 10;
+  public get count(): number {
+    return this._count;
+  }
+  public set count(value: number) {
+    this._count = Number.parseInt(value as any); // input element returns a string as value
+    this.updatePageCount();
   }
 
-  public set rangeQuery(value: string) {
-    this._rangeQuery = value;
-    this.updateFilteredHandlers();
+  public pageCount: number = 0;
+  private updatePageCount(): void {
+    this.pageCount = Math.ceil(this.filteredHandlers.length / this.count);
+    this.onOnePageHandlers = this.filteredHandlers.slice(this.pageIndex * this.count, this.pageIndex * this.count + this.count);
+  }
+
+  private _pageIndex = 0;
+  public get pageIndex() {
+    return this._pageIndex;
+  }
+  public set pageIndex(value) {
+    this._pageIndex = value;
+    this.onOnePageHandlers = this.filteredHandlers.slice(this.pageIndex * this.count, this.pageIndex * this.count + this.count);
   }
 
   public handlers: ProtocolHandler[] = [];
   public filteredHandlers: ProtocolHandler[] = [];
+  public onOnePageHandlers: ProtocolHandler[] = [];
 
   constructor(
     private _handlersProviderService: HandlersProviderService,
@@ -53,6 +68,7 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
       next: x => {
         this.handlers = x;
         this.filteredHandlers = x;
+        this.updatePageCount();
       },
       error: x => {
         console.error(x);
@@ -65,17 +81,16 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   }
 
 
+  public maxCount(): void {
+    this.count = this.filteredHandlers.length;
+  }
+
+  public onPageIndexChanged(pageIndex: number): void {
+    this.pageIndex = pageIndex;
+  }
+
   private updateFilteredHandlers(): void {
-    const parts = this.rangeQuery.split(/[\[:\]*+]/).map(x => Number.parseInt(x)); //example [0:10]*2+3
-
-    const from = Number.isNaN(parts[1]) ? 0 : parts[1];
-    const to = Number.isNaN(parts[2]) ? Number.MAX_VALUE : parts[2];
-    const pageIndex = Number.isNaN(parts[4]) ? 0 : parts[4];
-    const offset = Number.isNaN(parts[5]) ? 0 : parts[5];
-    const rangeCount = to - from;
-
     this.filteredHandlers = this.handlers
-      .filter(x => `${x.protocol}${x.key}${x.command}`.toLowerCase().includes(this._filterValue.toLowerCase()))
-      .slice(from + rangeCount * pageIndex + offset, to + rangeCount * pageIndex + offset);
+      .filter(x => `${x.protocol}${x.key}${x.command}`.toLowerCase().includes(this._filterValue.toLowerCase()));
   }
 }

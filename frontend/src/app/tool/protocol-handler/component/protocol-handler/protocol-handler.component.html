@@ -2,10 +2,10 @@
 <!-- <td>{{handler.protocol}}</td> -->
 <!-- <td>{{handler.key | trimShellOpenCommand}}</td> -->
 <td>{{handler.command}}</td>
-<td><span class="text-danger">{{handler.protocol}}</span><span>:</span><span>{{url}}</span></td>
+<td><span class="text-danger">{{handler.protocol}}:</span><span>{{url}}</span></td>
 <td>
     <div class="btn-group">
-        <a [routerLink]="['/protocol-handlers', handler.protocol]" class="btn btn-sm btn-outline-primary">edit</a>
+        <a [routerLink]="['/protocol-handlers', handler.protocol]" class="btn btn-sm btn-outline-primary">info</a>
         <a [href]="href" class="btn btn-sm btn-outline-primary">run</a>
     </div>
 </td>
