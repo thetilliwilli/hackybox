@@ -8,10 +8,10 @@
     <li class="page-item active">
         <button class="page-link" (click)="changePageIndex(pageIndex)">{{(pageIndex).toString().padStart(2, "&nbsp;")}}</button>
     </li>
-    <li class="page-item">
-        <button class="page-link" (click)="changePageIndex(pageIndex+1)">{{(pageIndex + 1).toString().padStart(2, "&nbsp;")}}</button>
+    <li class="page-item" [ngClass]="{'disabled':currentPage==pageCount}">
+        <button class="page-link" (click)="changePageIndex(pageIndex+1)">{{(currentPage >= pageCount ? "" : currentPage ).toString().padStart(2, "&nbsp;")}}</button>
     </li>
-    <li class="page-item">
+    <li class="page-item" [ngClass]="{'disabled':currentPage==pageCount}">
         <button class="page-link" (click)="changePageIndex(pageIndex+1)">&gt;&gt;</button>
     </li>
 </ul>

@@ -45,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr protocol-handler *ngFor="let h of onOnePageHandlers;let i = index" [url]="url"
+                    <tr protocol-handler *ngFor="let h of pageHandlers;let i = index" [url]="url"
                         [index]="i+pageIndex*count" [handler]="h"></tr>
                 </tbody>
             </table>

@@ -16,6 +16,7 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   public set filterValue(value: string) {
     this._filterValue = value;
     this.updateFilteredHandlers();
+    this.updatePageCount();
   }
 
   private _url: string = "//";
@@ -43,7 +44,7 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   public pageCount: number = 0;
   private updatePageCount(): void {
     this.pageCount = Math.ceil(this.filteredHandlers.length / this.count);
-    this.onOnePageHandlers = this.filteredHandlers.slice(this.pageIndex * this.count, this.pageIndex * this.count + this.count);
+    this.updatePageHandlers()
   }
 
   private _pageIndex = 0;
@@ -52,12 +53,12 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   }
   public set pageIndex(value) {
     this._pageIndex = value;
-    this.onOnePageHandlers = this.filteredHandlers.slice(this.pageIndex * this.count, this.pageIndex * this.count + this.count);
+    this.updatePageHandlers()
   }
 
-  public handlers: ProtocolHandler[] = [];
+  public allHandlers: ProtocolHandler[] = [];
   public filteredHandlers: ProtocolHandler[] = [];
-  public onOnePageHandlers: ProtocolHandler[] = [];
+  public pageHandlers: ProtocolHandler[] = [];
 
   constructor(
     private _handlersProviderService: HandlersProviderService,
@@ -66,7 +67,7 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._subscription = this._handlersProviderService.getHandlers().subscribe({
       next: x => {
-        this.handlers = x;
+        this.allHandlers = x;
         this.filteredHandlers = x;
         this.updatePageCount();
       },
@@ -90,7 +91,11 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   }
 
   private updateFilteredHandlers(): void {
-    this.filteredHandlers = this.handlers
+    this.filteredHandlers = this.allHandlers
       .filter(x => `${x.protocol}${x.key}${x.command}`.toLowerCase().includes(this._filterValue.toLowerCase()));
+  }
+
+  private updatePageHandlers(): void {
+    this.pageHandlers = this.filteredHandlers.slice(this.pageIndex * this.count, this.pageIndex * this.count + this.count);
   }
 }
