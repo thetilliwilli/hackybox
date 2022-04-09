@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProtocolHandlerToolModule } from './tool/protocol-handler/protocol-handler-tool.module';
 import { MemfindToolModule } from './tool/memfind-tool/memfind-tool.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
