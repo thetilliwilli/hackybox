@@ -1,12 +1,33 @@
 <div class="container-fluid">
     <div class="col-12">
-        <div class="input-group">
-            <button class="btn btn-outline-secondary" tabindex="-1">filter</button>
-            <input class="form-control" type="text" [(ngModel)]="filterValue" placeholder="filter" tabindex="1">
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group">
+                    <!-- z-index:10 чтобы инпут поле не перекрывало badge во время фокуса  -->
+                    <button class="btn btn-outline-secondary" tabindex="-1" style="z-index:10;">
+                        filter
+                        <span class="badge rounded-pill bg-secondary position-absolute top-0 start-100 translate-middle">
+                            {{filteredHandlers.length}}
+                        </span>
+                    </button>
+                    <input class="form-control" type="text" [(ngModel)]="filterValue" placeholder="filter" tabindex="1">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" tabindex="-1">
+                        range
+                    </button>
+                    <input class="form-control" type="text" [(ngModel)]="rangeQuery">
+                </div>
+                <!-- <app-table-pager [pageIndex]="pageIndex" [pageCount]="pageCount"></app-table-pager> -->
+            </div>
         </div>
-        <div class="input-group">
-            <button type="button" class="btn btn-outline-secondary" tabindex="-1" (click)="resetUrl()">url</button>
-            <input class="form-control" type="text" [(ngModel)]="url" placeholder="url addon" tabindex="2">
+        <div class="row">
+            <div class="input-group">
+                <button type="button" class="btn btn-outline-secondary" tabindex="-1" (click)="resetUrl()">url</button>
+                <input class="form-control" type="text" [(ngModel)]="url" placeholder="url addon" tabindex="2">
+            </div>
         </div>
     </div>
     <div class="col-12">

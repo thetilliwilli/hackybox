@@ -7,6 +7,7 @@ import { TrimShellOpenCommandPipe } from 'src/app/shared/trim-shell-open-command
 import { ProtocolHandlerToolComponent } from './component/protocol-handler-tool/protocol-handler-tool.component';
 import { ProtocolHandlerDetailsComponent } from './component/protocol-handler-details/protocol-handler-details.component';
 import { RouterModule } from '@angular/router';
+import { TablePagerComponent } from './component/table-pager/table-pager.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     TrimShellOpenCommandPipe,
     ProtocolHandlerToolComponent,
     ProtocolHandlerDetailsComponent,
+    TablePagerComponent,
   ],
   imports: [
     CommonModule,

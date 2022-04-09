@@ -15,8 +15,7 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   }
   public set filterValue(value: string) {
     this._filterValue = value;
-
-    this.filteredHandlers = this.handlers.filter(x => `${x.protocol}${x.key}${x.command}`.toLowerCase().includes(this._filterValue.toLowerCase()));
+    this.updateFilteredHandlers();
   }
 
   private _url: string = "//";
@@ -25,12 +24,21 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
   }
   public set url(value: string) {
     this._url = value;
-
-    this.filteredHandlers = this.filteredHandlers.slice();
+    this.updateFilteredHandlers();
   }
 
   public resetUrl() {
     this.url = "//" + this.url;
+  }
+
+  private _rangeQuery: string = "[0:10]*0+0";
+  public get rangeQuery(): string {
+    return this._rangeQuery;
+  }
+
+  public set rangeQuery(value: string) {
+    this._rangeQuery = value;
+    this.updateFilteredHandlers();
   }
 
   public handlers: ProtocolHandler[] = [];
@@ -54,5 +62,20 @@ export class HandlersTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subscription?.unsubscribe();
+  }
+
+
+  private updateFilteredHandlers(): void {
+    const parts = this.rangeQuery.split(/[\[:\]*+]/).map(x => Number.parseInt(x)); //example [0:10]*2+3
+
+    const from = Number.isNaN(parts[1]) ? 0 : parts[1];
+    const to = Number.isNaN(parts[2]) ? Number.MAX_VALUE : parts[2];
+    const pageIndex = Number.isNaN(parts[4]) ? 0 : parts[4];
+    const offset = Number.isNaN(parts[5]) ? 0 : parts[5];
+    const rangeCount = to - from;
+
+    this.filteredHandlers = this.handlers
+      .filter(x => `${x.protocol}${x.key}${x.command}`.toLowerCase().includes(this._filterValue.toLowerCase()))
+      .slice(from + rangeCount * pageIndex + offset, to + rangeCount * pageIndex + offset);
   }
 }
